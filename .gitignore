@@ -1,2 +1,5 @@
 Ecourt_Filing_Account_Enforcer.pem  
 .DS_Store
+text.xml
+build_ext/
+build_ext.crx
