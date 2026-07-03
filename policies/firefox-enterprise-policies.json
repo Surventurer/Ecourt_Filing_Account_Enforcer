@@ -1,0 +1,10 @@
+{
+  "policies": {
+    "ExtensionSettings": {
+      "ecourt-filing-account-enforcer@surventurer.github.io": {
+        "installation_mode": "force_installed",
+        "install_url": "https://YOUR_HOST_OR_AMO_URL/Ecourt_Filing_Account_Enforcer.xpi"
+      }
+    }
+  }
+}

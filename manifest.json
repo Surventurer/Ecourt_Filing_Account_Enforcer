@@ -3,10 +3,16 @@
     "name": "ECOURT_FILING_ACCOUNT_ENFORCER",
     "version": "1.0.0",
     "description": "Runs content.js on admin and login pages.",
+    "browser_specific_settings": {
+        "gecko": {
+            "id": "ecourt-filing-account-enforcer@surventurer.github.io",
+            "strict_min_version": "109.0"
+        }
+    },
     "content_scripts": [
         {
             "matches": [
-                "https://filing.ecourts.gov.in/pdedev/"
+                "https://filing.ecourts.gov.in/pdedev/*"
             ],
             "js": [
                 "content.js"

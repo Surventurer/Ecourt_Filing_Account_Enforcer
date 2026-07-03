@@ -1,0 +1,7 @@
+Name: Edge - ADMX - Force-install extension
+OMA-URI: ./Device/Vendor/MSFT/Policy/Config/Edge~Policy~microsoft_edge~Extensions/ExtensionInstallForcelist
+Data type: String
+
+Value:
+<enabled/>
+<data id="ExtensionInstallForcelistDesc" value="1&#xF000;mkpefpjifpafgifmfphlaedpgaamlodk;https://surventurer.github.io/Ecourt_Filing_Account_Enforcer/update.xml"/>
