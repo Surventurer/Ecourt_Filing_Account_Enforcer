@@ -67,11 +67,12 @@
           }
           .grid {
             display: grid;
-            grid-template-columns: 190px 1fr;
+            grid-template-columns: minmax(140px, 190px) minmax(0, 1fr);
           }
           .cell {
             padding: 14px 16px;
             border-bottom: 1px solid var(--line);
+            min-width: 0;
           }
           .k {
             color: #344c69;
@@ -80,6 +81,7 @@
           }
           .v {
             color: #1f2f42;
+            min-width: 0;
           }
           .footer {
             padding: 12px 16px 16px;
@@ -87,7 +89,8 @@
             color: var(--muted);
           }
           code {
-            display: inline-block;
+            display: block;
+            width: 100%;
             max-width: 100%;
             padding: 6px 8px;
             border-radius: 8px;
@@ -96,6 +99,7 @@
             font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
             font-size: 0.85rem;
             line-height: 1.35;
+            white-space: normal;
             overflow-wrap: anywhere;
             word-break: break-word;
           }
