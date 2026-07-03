@@ -6,72 +6,139 @@
     <html lang="en">
       <head>
         <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
         <title>Chrome Extension Update Manifest</title>
         <style>
+          :root {
+            --bg-0: #f4f7fb;
+            --bg-1: #d9e4f3;
+            --card: #ffffff;
+            --text: #122033;
+            --muted: #4f647d;
+            --line: #dbe5f0;
+            --accent: #0e5db2;
+            --code-bg: #f2f6fb;
+            --shadow: 0 10px 32px rgba(15, 35, 65, 0.14);
+          }
+          * {
+            box-sizing: border-box;
+          }
+          html,
           body {
             margin: 0;
-            padding: 24px;
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
-            background: #f7f9fc;
-            color: #1f2937;
+            padding: 0;
+          }
+          body {
+            min-height: 100vh;
+            font-family: "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+            color: var(--text);
+            background:
+              radial-gradient(circle at 10% 0%, rgba(14, 93, 178, 0.18), transparent 45%),
+              radial-gradient(circle at 95% 10%, rgba(38, 121, 203, 0.14), transparent 40%),
+              linear-gradient(180deg, var(--bg-0) 0%, var(--bg-1) 100%);
+            padding: 20px;
+          }
+          .shell {
+            width: min(980px, 100%);
+            margin: 0 auto;
           }
           .card {
-            max-width: 820px;
-            margin: 0 auto;
-            background: #ffffff;
-            border: 1px solid #dbe3ef;
-            border-radius: 12px;
-            padding: 20px;
-            box-shadow: 0 4px 18px rgba(23, 38, 66, 0.08);
+            background: var(--card);
+            border: 1px solid var(--line);
+            border-radius: 18px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+          }
+          .head {
+            padding: 24px 24px 14px;
+            border-bottom: 1px solid var(--line);
+            background: linear-gradient(180deg, #ffffff 0%, #f6faff 100%);
           }
           h1 {
-            margin: 0 0 8px;
-            font-size: 20px;
+            margin: 0;
+            font-size: clamp(1.05rem, 2.3vw, 1.45rem);
+            line-height: 1.25;
+            letter-spacing: 0.01em;
           }
-          p {
-            margin: 0 0 16px;
-            color: #4b5563;
+          .sub {
+            margin: 8px 0 0;
+            font-size: clamp(0.9rem, 1.7vw, 1rem);
+            color: var(--muted);
           }
-          table {
-            width: 100%;
-            border-collapse: collapse;
+          .grid {
+            display: grid;
+            grid-template-columns: 190px 1fr;
           }
-          th, td {
-            text-align: left;
-            padding: 10px;
-            border-bottom: 1px solid #eef2f7;
-            vertical-align: top;
+          .cell {
+            padding: 14px 16px;
+            border-bottom: 1px solid var(--line);
           }
-          th {
-            width: 180px;
-            color: #374151;
+          .k {
+            color: #344c69;
+            font-weight: 600;
+            background: #f9fbfe;
+          }
+          .v {
+            color: #1f2f42;
+          }
+          .footer {
+            padding: 12px 16px 16px;
+            font-size: 0.84rem;
+            color: var(--muted);
           }
           code {
+            display: inline-block;
+            max-width: 100%;
+            padding: 6px 8px;
+            border-radius: 8px;
+            background: var(--code-bg);
+            border: 1px solid #d6e3f1;
             font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
-            background: #f3f4f6;
-            padding: 2px 6px;
-            border-radius: 6px;
+            font-size: 0.85rem;
+            line-height: 1.35;
+            overflow-wrap: anywhere;
+            word-break: break-word;
+          }
+          @media (max-width: 720px) {
+            body {
+              padding: 12px;
+            }
+            .head {
+              padding: 18px 16px 12px;
+            }
+            .grid {
+              grid-template-columns: 1fr;
+            }
+            .k {
+              border-bottom: 0;
+              padding-bottom: 8px;
+            }
+            .v {
+              padding-top: 0;
+              padding-bottom: 14px;
+            }
           }
         </style>
       </head>
       <body>
-        <div class="card">
-          <h1>Chrome Extension Update Manifest</h1>
-          <p>This page is for browser policy/update checks. Values are shown for readability.</p>
-          <table>
-            <tr>
-              <th>App ID</th>
-              <td><code><xsl:value-of select="g:gupdate/g:app/@appid" /></code></td>
-            </tr>
-            <tr>
-              <th>Codebase</th>
-              <td><code><xsl:value-of select="g:gupdate/g:app/g:updatecheck/@codebase" /></code></td>
-            </tr>
-            <tr>
-              <th>Version</th>
-              <td><code><xsl:value-of select="g:gupdate/g:app/g:updatecheck/@version" /></code></td>
-            </tr>
-          </table>
+        <div class="shell">
+          <div class="card">
+            <div class="head">
+              <h1>Extension Update Manifest</h1>
+              <p class="sub">Human-readable view for policy and update verification.</p>
+            </div>
+            <div class="grid">
+              <div class="cell k">App ID</div>
+              <div class="cell v"><code><xsl:value-of select="g:gupdate/g:app/@appid" /></code></div>
+
+              <div class="cell k">Codebase URL</div>
+              <div class="cell v"><code><xsl:value-of select="g:gupdate/g:app/g:updatecheck/@codebase" /></code></div>
+
+              <div class="cell k">Version</div>
+              <div class="cell v"><code><xsl:value-of select="g:gupdate/g:app/g:updatecheck/@version" /></code></div>
+            </div>
+            <div class="footer">This styling is only for browser display. The XML data remains standard for extension update checks.</div>
+          </div>
         </div>
       </body>
     </html>

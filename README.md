@@ -21,14 +21,35 @@ Host these files publicly (for example, via GitHub Pages):
 - update.xml
 - update.xsl (optional, only for human-readable XML display)
 
-Update URL:
+## Universal configuration (no hardcoded ID dependency)
 
-- https://surventurer.github.io/Ecourt_Filing_Account_Enforcer/update.xml
+This repository includes a generator script that derives the Chromium extension ID from your PEM key and writes all deployment files automatically.
 
-Extension IDs:
+Script:
 
-- Chromium ID: mkpefpjifpafgifmfphlaedpgaamlodk
-- Firefox ID: ecourt-filing-account-enforcer@surventurer.github.io
+- scripts/generate-release-files.sh
+
+Run from project root:
+
+1. chmod +x scripts/generate-release-files.sh
+2. ./scripts/generate-release-files.sh --pem Ecourt_Filing_Account_Enforcer.pem --base-url https://YOUR_HOST/YOUR_REPO
+
+This command regenerates:
+
+- update.xml
+- policies/windows-intune-oma-uri.txt
+- policies/windows-intune-oma-uri-edge.txt
+- policies/linux-managed-policy.json
+- policies/linux-edge-managed-policy.json
+- policies/macos-com.google.Chrome.plist
+- policies/macos-com.microsoft.Edge.plist
+- policies/firefox-enterprise-policies.json
+
+Optional script flags:
+
+- --crx-file (default: Ecourt_Filing_Account_Enforcer.crx)
+- --firefox-id (default: ecourt-filing-account-enforcer@surventurer.github.io)
+- --firefox-xpi-url (default placeholder)
 
 ## Policy templates in this repository
 
@@ -40,7 +61,7 @@ Extension IDs:
 - Edge macOS managed preferences: policies/macos-com.microsoft.Edge.plist
 - Firefox enterprise policy: policies/firefox-enterprise-policies.json
 
-Note: In policies/firefox-enterprise-policies.json, replace install_url with your real signed XPI URL.
+Note: For Firefox, set a real signed XPI URL using --firefox-xpi-url or by editing policies/firefox-enterprise-policies.json.
 
 ## Important install note
 
